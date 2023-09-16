@@ -2,24 +2,24 @@ import videogameModel from "../models/videogame.js";
 
 export default class VideoGamesManager {
 
-    getVideogames = () => {
-        return videogameModel.find();
+    getVideogames = (params) => {
+        return videogameModel.find(params).lean();
     }
 
     getVideogameBy = (params) => {
-        return videogameModel.findOne(params)
+        return videogameModel.findOne(params).lean();
     }
 
     creatVideogame = (videogame) => {
         return videogameModel.create(videogame);
     }
 
-    updateVideogame = (id,videogame) => {
-        return videogameModel.updateOne({_id:id},{$set:videogame})
+    updateVideogame = (id, videogame) => {
+        return videogameModel.updateOne({ _id: id }, { $set: videogame });
     }
 
     deleteVideogame = (id) => {
-        return videogameModel.deleteOne({_id:id});
+        return videogameModel.deleteOne({ _id: id });
     }
 
 }
