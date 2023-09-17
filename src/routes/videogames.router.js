@@ -10,6 +10,12 @@ router.get('/', async (req, res) => {
     res.send({ status: "success", payload: videogames })
 })
 
+router.get('/:vid', async (req, res) => {
+    const { vid } = req.params;
+    const videogame = await videogamesService.getVideogameBy({ _id: vid });
+    res.send({ status: "success", payload: videogame })
+})
+
 router.post('/', uploader.array('images'), async (req, res) => {
     const {
         title,
@@ -64,7 +70,7 @@ router.put('/:vid', async (req, res) => {
 router.delete('/:vid', async (req, res) => {
     const { vid } = req.params;
     const result = await videogamesService.deleteVideogame(vid);
-    res.send({statuts:"success", message:"Video Juego Borrado"});
+    res.send({ statuts: "success", message: "Video Juego Borrado" });
 })
 
 export default router;
